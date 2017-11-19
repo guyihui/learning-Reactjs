@@ -24,10 +24,19 @@ class App extends React.Component {
         });
     }
 
+    /*
+     * 搜索
+     */
+    searchStaff(word) {
+        this.setState({
+            staff: this.state.staff.searchStaff(word)
+        });
+    }
+
     render(){
         return (
             <div>
-                <StaffHeader/>
+                <StaffHeader searchStaff={this.searchStaff.bind(this)} />
                 <StaffItemPanel items={this.state.staff.staff}/>
                 <StaffFooter addStaffItem={this.addStaffItem.bind(this)}/>
                 <StaffDetail/>

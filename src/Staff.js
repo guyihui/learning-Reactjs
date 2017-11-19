@@ -28,6 +28,7 @@ export default class Staff {
             new staffItem(Staff.rawData[10])
         ];
         this.staff = this.allStaff;
+        this.word = '';  //搜索关键字
     }
 
     //增
@@ -35,6 +36,20 @@ export default class Staff {
         let newItem = new staffItem(item);
         this.allStaff.push(newItem);
         this.staff = this.allStaff;
+        return this;
+    }
+
+    //搜索
+    searchStaff(word){
+        this.word = word;
+        this.staff = this.allStaff;
+        //在staff中搜索
+        this.staff = this.staff.filter(item => {
+            return item.info.name.indexOf(word)!=-1 ||
+                (item.info.age+'').indexOf(word)!=-1 ||
+                item.info.id.indexOf(word)!=-1 ||
+                item.info.sex.indexOf(word)!=-1;
+        });
         return this;
     }
 }

@@ -1,6 +1,13 @@
 import React from 'react';
 export default class StaffHeader extends React.Component{
 
+    //search
+    handlerSearch(){
+        let bar = React.findDOMNode(this.refs.searchBar);
+        let value = bar.value;
+        this.props.searchStaff(value);
+    }
+
     render(){
         return (
 			<div>
@@ -8,7 +15,7 @@ export default class StaffHeader extends React.Component{
 				<table className="optHeader">
 					<tbody>
 					<tr>
-						<td className="headerTd"><input type='text' placeholder='Search...' /></td>
+						<td className="headerTd"><input ref='searchBar' onChange={this.handlerSearch.bind(this)} type='text' placeholder='Search...' /></td>
 						<td className="headerTd">
 							<label for='idSelect'>人员筛选</label>
 							<select id='idSelect'>
