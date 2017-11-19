@@ -1,5 +1,52 @@
+
 import React from 'react';
 export default class StaffFooter extends React.Component{
+
+    handlerAddClick(evt){
+        evt.preventDefault();
+        let item = {};
+        let addForm = React.findDOMNode(this.refs.addForm);
+        let sex = addForm.querySelector('#staffAddSex');
+        let id = addForm.querySelector('#staffAddId');
+
+        item.name = addForm.querySelector('#staffAddName').value.trim();
+        item.age = addForm.querySelector('#staffAddAge').value.trim();
+        item.descrip = addForm.querySelector('#staffAddDescrip').value.trim();
+        item.sex = sex.options[sex.selectedIndex].value;
+        item.id = id.options[id.selectedIndex].value;
+
+        /*
+         *表单验证
+         */
+        if(item.name=='' || item.age=='' || item.descrip=='') {
+            let tips = React.findDOMNode(this.refs.tipsUnDone);
+            tips.style.display = 'block';
+            setTimeout(function(){
+                tips.style.display = 'none';
+            }, 1000);
+            return;
+        }
+        //非负整数
+        let numReg = /^\d+$/;
+        if(!numReg.test(item.age) || parseInt(item.age)>150) {
+            let tips = React.findDOMNode(this.refs.tipsUnAge);
+            tips.style.display = 'block';
+            setTimeout(function(){
+                tips.style.display = 'none';
+            }, 1000);
+            return;
+        }
+
+        this.props.addStaffItem(item);
+        addForm.reset();
+
+        //此处应在返回添加成功信息后确认
+        let tips = React.findDOMNode(this.refs.tips);
+        tips.style.display = 'block';
+        setTimeout(function(){
+            tips.style.display = 'none';
+        }, 1000);
+    }
 
     render(){
         return (
@@ -39,7 +86,7 @@ export default class StaffFooter extends React.Component{
 					<p ref='tipsUnDone' className='tips'>请录入完整的人员信息</p>
 					<p ref='tipsUnAge' className='tips'>请录入正确的年龄</p>
 					<div>
-						<button>提交</button>
+						<button onClick={this.handlerAddClick.bind(this)}>提交</button>
 					</div>
 				</form>
 			</div>

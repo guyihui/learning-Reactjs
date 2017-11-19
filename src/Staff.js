@@ -29,6 +29,14 @@ export default class Staff {
         ];
         this.staff = this.allStaff;
     }
+
+    //增
+    addStaffItem(item) {
+        let newItem = new staffItem(item);
+        this.allStaff.push(newItem);
+        this.staff = this.allStaff;
+        return this;
+    }
 }
 
 Staff.rawData = [{ descrip:'我是一匹来自远方的狼。', sex: '男', age: 20, name: '张三', id: '主任'},
