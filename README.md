@@ -12,9 +12,9 @@
     npm start
 ```
 
-### 1.3在浏览器运行index.html即可
+### 1.3在浏览器运行index.html即可。
 
-源代码中未包含生成好的bundle.js。
+源代码中包含生成好的bundle.js。
 
 # 2.相关资料
 
@@ -22,6 +22,3 @@
 
 代码解析：[十分详细的React实例](http://blog.csdn.net/a153375250/article/details/52667739)
 
-# 3.致谢
-
-如果对你有帮助，就奉献一颗Star吧！
